@@ -83,8 +83,6 @@ async def remind_callback(ctx:ContextTypes.DEFAULT_TYPE):
             continue
         if balance < row[2]:
             await ctx.bot.send_message(row[0],text=low_balance_text.format(balance))
-        else:
-            await ctx.bot.send_message(row[0],text=f"OK balance of {balance}")
 
     conn.close()
 
