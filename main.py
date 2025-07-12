@@ -38,6 +38,10 @@ async def setcard(update:Update,context:ContextTypes.DEFAULT_TYPE):
     if not card_number.isdigit():
         await context.bot.send_message(chat_id=update.effective_chat.id,text="Указанный номер содержит нецифровые символы. "+command_help,parse_mode="Markdown")
         return
+    if not len(card_number) == 19:
+        await context.bot.send_message(chat_id=update.effective_chat.id,text="Номер карты должен состоять из 19 цифр. "+command_help,parse_mode="Markdown")
+        return 
+
     if not luhn_check(card_number):
         await context.bot.send_message(chat_id=update.effective_chat.id,text="Указанный номер не является корректным, проверьте написание номера.",parse_mode="Markdown")
         return
